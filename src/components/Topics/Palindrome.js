@@ -2,33 +2,35 @@ import React, { Component } from 'react';
 
 
 class Palindrome extends Component {
-    constructor(){
+    constructor() {
         super();
 
-        this.state={
+        this.state = {
             userInput: '',
             answer: ''
         }
     }
 
-    handlechange(val){
-        this.setState({userInput: val})
+    handlechange(val) {
+        this.setState({ userInput: val })
     }
 
-    problemSolver(val){
-        
-        val.toString()===val.toString().split('').reverse().join('')?this.setState ({answer: true}):this.setState ({answer: true});
+    problemSolver(val) {
+        var bol;
+        val.toString() === val.toString().split('').reverse().join('') ? bol = 'True' : bol = 'False';
+
+        this.setState({ answer: bol })
     }
 
     render() {
 
         return (
-            <div>
-                <h4 className="puzzleBox filterStringPB">Palindrome</h4>
-                <input className="inputLine" onChange ={(e)=>this.handlechange(e.target.value)}></input>
-                <button className="confirmationButton" onClick={()=>this.problemSolver(this.state.userInput)}></button>
-                <span className="resultsBox">{JSON.stringify(this.state.answer, null, 10)}</span>
-                </div>
+            <div className="puzzleBox filterStringPB">
+                <h4>Palindrome</h4>
+                <input className="inputLine" onChange={(e) => this.handlechange(e.target.value)}></input>
+                <button className="confirmationButton" onClick={() => this.problemSolver(this.state.userInput)}>Check</button>
+                <span className="resultsBox">Palindrome: {JSON.stringify(this.state.answer)}</span>
+            </div>
         )
     }
 }
